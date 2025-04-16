@@ -7,6 +7,19 @@
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gray-50 text-gray-800 font-sans">
+  <!-- Navigation Bar -->
+  <nav class="bg-white shadow sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
+      <div class="text-xl font-bold text-pink-500">Gyubin Fan</div>
+      <div class="space-x-6 text-sm font-medium">
+        <a href="#about" class="hover:text-pink-500">關於</a>
+        <a href="#gallery" class="hover:text-pink-500">照片</a>
+        <a href="#social" class="hover:text-pink-500">社群</a>
+        <a href="#videos" class="hover:text-pink-500">影音</a>
+      </div>
+    </div>
+  </nav>
+
   <!-- Hero Section -->
   <section class="bg-gradient-to-r from-pink-200 to-purple-300 py-20 text-center">
     <h1 class="text-5xl font-bold mb-4">💗 Gyubin Fan Site</h1>
@@ -14,14 +27,14 @@
   </section>
 
   <!-- About Section -->
-  <section class="py-12 px-6 md:px-20">
+  <section id="about" class="py-12 px-6 md:px-20">
     <h2 class="text-3xl font-bold mb-4">關於 Gyubin</h2>
     <p class="text-lg leading-relaxed mb-2">本名朴珪斌（Park Gyu-bin），2006年出生，韓國新生代女歌手，於2024年以《Really Like You》出道，因其甜美嗓音與現場實力而被譽為「小IU」。</p>
     <p class="text-lg leading-relaxed">她的音樂作品包括《Satellite》、《Special》，並於2025年推出首張迷你專輯《Flowering》。</p>
   </section>
 
   <!-- Image Gallery Preview -->
-  <section class="py-12 px-6 md:px-20 bg-white">
+  <section id="gallery" class="py-12 px-6 md:px-20 bg-white">
     <h2 class="text-3xl font-bold mb-6">精選照片</h2>
     <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
       <img src="https://tse1.mm.bing.net/th?id=OIP.M4-ZO8bKniJj7aAsuP571AAAAA&pid=Api" alt="Gyubin 1" class="rounded-xl shadow-md">
@@ -32,7 +45,7 @@
   </section>
 
   <!-- Social Links -->
-  <section class="py-12 px-6 md:px-20 text-center">
+  <section id="social" class="py-12 px-6 md:px-20 text-center">
     <h2 class="text-3xl font-bold mb-6">社群連結</h2>
     <div class="flex justify-center gap-10 text-lg flex-wrap">
       <a href="https://www.instagram.com/baggyubin73" target="_blank" class="flex items-center gap-2 text-pink-600 hover:underline">
@@ -47,6 +60,25 @@
       <a href="https://linktr.ee/live.gyubin" target="_blank" class="flex items-center gap-2 text-blue-500 hover:underline">
         <img src="https://img.icons8.com/ios-filled/24/3b82f6/link--v1.png" alt="Linktree" class="w-5 h-5">Linktree
       </a>
+    </div>
+  </section>
+
+  <!-- Video Wall -->
+  <section id="videos" class="py-12 px-6 md:px-20 bg-white">
+    <h2 class="text-3xl font-bold mb-6 text-center">🎬 音樂影音牆</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div class="rounded-xl overflow-hidden shadow-lg">
+        <iframe class="w-full aspect-video" src="https://www.youtube.com/embed/MvlmLJpWvuM" frameborder="0" allowfullscreen></iframe>
+        <div class="p-4">
+          <h3 class="text-lg font-semibold">Really Like You - Official MV</h3>
+        </div>
+      </div>
+      <div class="rounded-xl overflow-hidden shadow-lg">
+        <iframe class="w-full aspect-video" src="https://www.youtube.com/embed/NZz3mSWz4D4" frameborder="0" allowfullscreen></iframe>
+        <div class="p-4">
+          <h3 class="text-lg font-semibold">Satellite - Live Performance</h3>
+        </div>
+      </div>
     </div>
   </section>
 
