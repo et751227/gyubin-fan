@@ -12,26 +12,25 @@
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-XTCQFZNJCY"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
-    function gtag() {
-      dataLayer.push(arguments);
-    }
-    gtag("js", new Date());
-    gtag("config", "G-XTCQFZNJCY");
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XTCQFZNJCY');
   </script>
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 </head>
 <body class="bg-gray-50 text-gray-800 font-sans">
+
   <!-- Navigation Bar -->
   <nav class="bg-white shadow sticky top-0 z-50 overflow-x-auto">
     <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center min-w-[440px]">
       <div class="text-xl font-bold text-pink-500">Gyubin Fan</div>
       <div class="flex space-x-6 text-sm font-medium">
-        <a href="#about" class="hover:text-pink-500 whitespace-nowrap">關於</a>
+        <a href="#news" class="hover:text-pink-500 whitespace-nowrap">新聞</a>
+        <a href="#videos" class="hover:text-pink-500 whitespace-nowrap">影音</a>
         <a href="#gallery" class="hover:text-pink-500 whitespace-nowrap">照片</a>
         <a href="#social" class="hover:text-pink-500 whitespace-nowrap">社群</a>
-        <a href="#videos" class="hover:text-pink-500 whitespace-nowrap">影音</a>
-        <a href="#news" class="hover:text-pink-500 whitespace-nowrap">新聞</a>
+        <a href="#about" class="hover:text-pink-500 whitespace-nowrap">關於</a>
       </div>
     </div>
   </nav>
@@ -49,12 +48,35 @@
     <p class="text-lg leading-relaxed">她的音樂作品包括《Satellite》、《Special》，並於2025年推出首張迷你專輯《Flowering》。</p>
   </section>
 
+  <!-- News Section -->
+  <section id="news" class="py-12 px-6 md:px-20 bg-white">
+    <h2 class="text-3xl font-bold mb-6 text-center">📰 最新新聞與活動</h2>
+    <ul id="news-list" class="space-y-4 text-lg list-disc list-inside"></ul>
+    <script>
+      fetch("https://et751227.github.io/gyubin-fan/data/news.json")
+        .then(res => res.json())
+        .then(news => {
+          const list = document.getElementById("news-list");
+          news.forEach(item => {
+            const li = document.createElement("li");
+            const a = document.createElement("a");
+            a.href = item.link;
+            a.textContent = item.title;
+            a.target = "_blank";
+            a.className = "text-blue-600 hover:underline";
+            li.appendChild(a);
+            list.appendChild(li);
+          });
+        });
+    </script>
+  </section>
+
   <!-- Image Gallery Preview -->
   <section id="gallery" class="py-12 px-6 md:px-20 bg-white">
     <h2 class="text-3xl font-bold mb-6">精選照片</h2>
     <div id="ig-feed" class="columns-2 md:columns-4 gap-4 space-y-4"></div>
     <script>
-      fetch("/data/ig.json")
+      fetch("https://et751227.github.io/gyubin-fan/data/ig.json")
         .then(res => res.json())
         .then(images => {
           const container = document.getElementById("ig-feed");
@@ -73,16 +95,16 @@
     <h2 class="text-3xl font-bold mb-6">社群連結</h2>
     <div class="flex justify-center gap-10 text-lg flex-wrap">
       <a href="https://www.instagram.com/baggyubin73" target="_blank" class="flex items-center gap-2 text-pink-600 hover:underline">
-        <img src="https://img.icons8.com/ios-filled/24/fa327a/instagram-new.png" alt="Instagram" class="w-5 h-5" />Instagram
+        <img src="https://img.icons8.com/ios-filled/24/fa327a/instagram-new.png" alt="Instagram" class="w-5 h-5">Instagram
       </a>
       <a href="https://www.youtube.com/@Gyubin" target="_blank" class="flex items-center gap-2 text-red-600 hover:underline">
-        <img src="https://img.icons8.com/ios-filled/24/fa0000/youtube-play.png" alt="YouTube" class="w-5 h-5" />YouTube
+        <img src="https://img.icons8.com/ios-filled/24/fa0000/youtube-play.png" alt="YouTube" class="w-5 h-5">YouTube
       </a>
       <a href="https://open.spotify.com/artist/7nScMbyBG94XsSpe7yrImS?si=q7tP2v70QECKJX5p3L49BA" target="_blank" class="flex items-center gap-2 text-green-600 hover:underline">
-        <img src="https://img.icons8.com/ios-filled/24/1DB954/spotify.png" alt="Spotify" class="w-5 h-5" />Spotify
+        <img src="https://img.icons8.com/ios-filled/24/1DB954/spotify.png" alt="Spotify" class="w-5 h-5">Spotify
       </a>
       <a href="https://linktr.ee/live.gyubin" target="_blank" class="flex items-center gap-2 text-blue-500 hover:underline">
-        <img src="https://img.icons8.com/ios-filled/24/3b82f6/link--v1.png" alt="Linktree" class="w-5 h-5" />Linktree
+        <img src="https://img.icons8.com/ios-filled/24/3b82f6/link--v1.png" alt="Linktree" class="w-5 h-5">Linktree
       </a>
     </div>
   </section>
@@ -106,29 +128,6 @@
     </div>
   </section>
 
-  <!-- News Section -->
-  <section id="news" class="py-12 px-6 md:px-20 bg-white">
-    <h2 class="text-3xl font-bold mb-6 text-center">📰 最新新聞與活動</h2>
-    <ul id="news-list" class="space-y-4 text-lg list-disc list-inside"></ul>
-    <script>
-      fetch("/data/news.json")
-        .then(res => res.json())
-        .then(news => {
-          const list = document.getElementById("news-list");
-          news.forEach(item => {
-            const li = document.createElement("li");
-            const a = document.createElement("a");
-            a.href = item.link;
-            a.textContent = item.title;
-            a.target = "_blank";
-            a.className = "text-blue-600 hover:underline";
-            li.appendChild(a);
-            list.appendChild(li);
-          });
-        });
-    </script>
-  </section>
-
   <!-- Footer -->
   <footer class="bg-gray-200 text-center py-6 mt-12 text-sm">
     <div class="mb-2">
@@ -136,5 +135,6 @@
     </div>
     製作：Gyubin 粉絲 Ethan Lin｜非官方網站｜版權屬原創者所有
   </footer>
+
 </body>
 </html>
