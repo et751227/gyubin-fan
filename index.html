@@ -29,6 +29,7 @@
         <a href="#gallery" class="hover:text-pink-500 whitespace-nowrap">照片</a>
         <a href="#social" class="hover:text-pink-500 whitespace-nowrap">社群</a>
         <a href="#videos" class="hover:text-pink-500 whitespace-nowrap">影音</a>
+        <a href="#news" class="hover:text-pink-500 whitespace-nowrap">新聞</a>
       </div>
     </div>
   </nav>
@@ -101,6 +102,29 @@
         </div>
       </div>
     </div>
+  </section>
+
+  <!-- News Section -->
+  <section id="news" class="py-12 px-6 md:px-20 bg-white">
+    <h2 class="text-3xl font-bold mb-6 text-center">📰 最新新聞與活動</h2>
+    <ul id="news-list" class="space-y-4 text-lg list-disc list-inside"></ul>
+    <script>
+      fetch("https://et751227.github.io/gyubin-fan/data/news.json")
+        .then(res => res.json())
+        .then(news => {
+          const list = document.getElementById("news-list");
+          news.forEach(item => {
+            const li = document.createElement("li");
+            const a = document.createElement("a");
+            a.href = item.link;
+            a.textContent = item.title;
+            a.target = "_blank";
+            a.className = "text-blue-600 hover:underline";
+            li.appendChild(a);
+            list.appendChild(li);
+          });
+        });
+    </script>
   </section>
 
   <!-- Footer -->
