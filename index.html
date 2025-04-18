@@ -53,7 +53,7 @@
     <h2 class="text-3xl font-bold mb-6 text-center">📰 最新新聞與活動</h2>
     <ul id="news-list" class="space-y-4 text-lg list-disc list-inside"></ul>
     <script>
-      fetch("https://et751227.github.io/gyubin-fan/data/news.json")
+      fetch("/data/news.json")
         .then(res => res.json())
         .then(news => {
           const list = document.getElementById("news-list");
@@ -76,7 +76,7 @@
     <h2 class="text-3xl font-bold mb-6">精選照片</h2>
     <div id="ig-feed" class="columns-2 md:columns-4 gap-4 space-y-4"></div>
     <script>
-      fetch("https://et751227.github.io/gyubin-fan/data/ig.json")
+      fetch("/data/ig.json")
         .then(res => res.json())
         .then(images => {
           const container = document.getElementById("ig-feed");
