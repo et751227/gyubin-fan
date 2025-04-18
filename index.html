@@ -48,16 +48,24 @@
     <p class="text-lg leading-relaxed">她的音樂作品包括《Satellite》、《Special》，並於2025年推出首張迷你專輯《Flowering》。</p>
   </section>
 
-  <!-- News Section -->
-  <section id="news" class="py-12 px-6 md:px-20 bg-white">
-    <h2 class="text-3xl font-bold mb-6 text-center">📰 最新新聞與活動</h2>
-    <ul id="news-list" class="space-y-4 text-lg list-disc list-inside"></ul>
-    <script>
-      fetch("/data/news.json")
-        .then(res => res.json())
-        .then(news => {
-          const list = document.getElementById("news-list");
-          news.forEach(item => {
+ <!-- News Section -->
+<section id="news" class="py-12 px-6 md:px-20 bg-white">
+  <h2 class="text-3xl font-bold mb-6 text-center">📰 最新新聞與活動</h2>
+  <ul id="news-list" class="space-y-4 text-lg list-disc list-inside"></ul>
+  <button id="load-more" class="mt-6 text-pink-600 hover:underline block mx-auto">載入更多新聞</button>
+
+  <script>
+    fetch("/data/news.json")
+      .then(res => res.json())
+      .then(news => {
+        const list = document.getElementById("news-list");
+        const btn = document.getElementById("load-more");
+        let current = 0;
+        const batchSize = 6;
+
+        function renderNext() {
+          const nextItems = news.slice(current, current + batchSize);
+          nextItems.forEach(item => {
             const li = document.createElement("li");
             const a = document.createElement("a");
             a.href = item.link;
@@ -67,9 +75,17 @@
             li.appendChild(a);
             list.appendChild(li);
           });
-        });
-    </script>
-  </section>
+          current += batchSize;
+          if (current >= news.length) {
+            btn.style.display = "none";
+          }
+        }
+
+        renderNext(); // 初始載入 6 筆
+        btn.addEventListener("click", renderNext);
+      });
+  </script>
+</section>
 
   <!-- Image Gallery Preview -->
   <section id="gallery" class="py-12 px-6 md:px-20 bg-white">
