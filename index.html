@@ -1,20 +1,22 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>GYUBIN FAN SITE</title>
-  <meta name="description" content="Gyubin 粉絲網站｜精選照片・影音牆・社群連結，一站追蹤最新動態">
+  <meta name="description" content="Gyubin 粉絲網站｜精選照片・影音牆・社群連結，一站追蹤最新動態" />
   <meta property="og:title" content="Gyubin Fan Site" />
   <meta property="og:description" content="追蹤 Gyubin 的最新活動與影音精選，粉絲專屬網站" />
   <meta property="og:image" content="https://img.icons8.com/fluency/96/000000/girl.png" />
-  <link rel="icon" href="https://img.icons8.com/fluency/48/000000/girl.png" type="image/png">
+  <link rel="icon" href="https://img.icons8.com/fluency/48/000000/girl.png" type="image/png" />
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-XTCQFZNJCY"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-XTCQFZNJCY');
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag("js", new Date());
+    gtag("config", "G-XTCQFZNJCY");
   </script>
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
@@ -52,7 +54,7 @@
     <h2 class="text-3xl font-bold mb-6">精選照片</h2>
     <div id="ig-feed" class="columns-2 md:columns-4 gap-4 space-y-4"></div>
     <script>
-      fetch("https://et751227.github.io/gyubin-fan/data/ig.json")
+      fetch("/data/ig.json")
         .then(res => res.json())
         .then(images => {
           const container = document.getElementById("ig-feed");
@@ -71,16 +73,16 @@
     <h2 class="text-3xl font-bold mb-6">社群連結</h2>
     <div class="flex justify-center gap-10 text-lg flex-wrap">
       <a href="https://www.instagram.com/baggyubin73" target="_blank" class="flex items-center gap-2 text-pink-600 hover:underline">
-        <img src="https://img.icons8.com/ios-filled/24/fa327a/instagram-new.png" alt="Instagram" class="w-5 h-5">Instagram
+        <img src="https://img.icons8.com/ios-filled/24/fa327a/instagram-new.png" alt="Instagram" class="w-5 h-5" />Instagram
       </a>
       <a href="https://www.youtube.com/@Gyubin" target="_blank" class="flex items-center gap-2 text-red-600 hover:underline">
-        <img src="https://img.icons8.com/ios-filled/24/fa0000/youtube-play.png" alt="YouTube" class="w-5 h-5">YouTube
+        <img src="https://img.icons8.com/ios-filled/24/fa0000/youtube-play.png" alt="YouTube" class="w-5 h-5" />YouTube
       </a>
       <a href="https://open.spotify.com/artist/7nScMbyBG94XsSpe7yrImS?si=q7tP2v70QECKJX5p3L49BA" target="_blank" class="flex items-center gap-2 text-green-600 hover:underline">
-        <img src="https://img.icons8.com/ios-filled/24/1DB954/spotify.png" alt="Spotify" class="w-5 h-5">Spotify
+        <img src="https://img.icons8.com/ios-filled/24/1DB954/spotify.png" alt="Spotify" class="w-5 h-5" />Spotify
       </a>
       <a href="https://linktr.ee/live.gyubin" target="_blank" class="flex items-center gap-2 text-blue-500 hover:underline">
-        <img src="https://img.icons8.com/ios-filled/24/3b82f6/link--v1.png" alt="Linktree" class="w-5 h-5">Linktree
+        <img src="https://img.icons8.com/ios-filled/24/3b82f6/link--v1.png" alt="Linktree" class="w-5 h-5" />Linktree
       </a>
     </div>
   </section>
@@ -109,7 +111,7 @@
     <h2 class="text-3xl font-bold mb-6 text-center">📰 最新新聞與活動</h2>
     <ul id="news-list" class="space-y-4 text-lg list-disc list-inside"></ul>
     <script>
-      fetch("https://et751227.github.io/gyubin-fan/data/news.json")
+      fetch("/data/news.json")
         .then(res => res.json())
         .then(news => {
           const list = document.getElementById("news-list");
