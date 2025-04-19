@@ -29,6 +29,7 @@
         <a href="#news" class="hover:text-pink-500 whitespace-nowrap">新聞</a>
         <a href="#videos" class="hover:text-pink-500 whitespace-nowrap">影音</a>
         <a href="#gallery" class="hover:text-pink-500 whitespace-nowrap">照片</a>
+        <a href="#timeline" class="hover:text-pink-500 whitespace-nowrap">年表</a>
         <a href="#social" class="hover:text-pink-500 whitespace-nowrap">社群</a>
         <a href="#about" class="hover:text-pink-500 whitespace-nowrap">關於</a>
       </div>
@@ -143,7 +144,26 @@
       </div>
     </div>
   </section>
-
+  
+   <!-- Timeline -->
+  <section id="timeline" class="py-12 px-6 md:px-20 bg-white">
+    <h2 class="text-3xl font-bold mb-6 text-center">🗓️ Gyubin 年表紀錄</h2>
+    <ul id="timeline-list" class="space-y-4 text-lg list-disc list-inside"></ul>
+    <script>
+      fetch("/data/timeline.json")
+        .then(res => res.json())
+        .then(data => {
+          const list = document.getElementById("timeline-list");
+          data.sort((a, b) => new Date(b.date) - new Date(a.date));
+          data.forEach(item => {
+            const li = document.createElement("li");
+            li.innerHTML = `<strong>${item.date}</strong>：${item.event}`;
+            list.appendChild(li);
+          });
+        });
+    </script>
+  </section>
+  
   <!-- Footer -->
   <footer class="bg-gray-200 text-center py-6 mt-12 text-sm">
     <div class="mb-2">
