@@ -3,13 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Really｜Gyubin Fan Site</title>
-  <meta name="description" content="Gyubin 粉絲網站 Really｜精選照片・影音牆・社群連結，一站追蹤最新動態" />
-  <meta property="og:title" content="Really｜Gyubin Fan Site" />
+  <title>Really | Gyubin Fan Site</title>
+  <meta name="description" content="非官方粉絲專屬網站，紀錄 Gyubin 的每一個甜美瞬間" />
+  <meta property="og:title" content="Really | Gyubin Fan Site" />
   <meta property="og:description" content="追蹤 Gyubin 的最新活動與影音精選，粉絲專屬網站" />
   <meta property="og:image" content="https://gyubin-fan.vercel.app/images/gyubin-logo.png" />
   <link rel="icon" href="/images/gyubin-logo.png" type="image/png" />
-  <link rel="apple-touch-icon" href="/images/gyubin-logo.png" />
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-XTCQFZNJCY"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -25,15 +24,15 @@
   <!-- Navigation Bar -->
   <nav class="bg-white shadow sticky top-0 z-50 overflow-x-auto">
     <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center min-w-[440px]">
-      <div class="flex items-center gap-2 font-bold text-pink-500 text-lg">
-        <img src="/images/gyubin-logo.png" class="w-6 h-6" alt="logo">
-        Really
+      <div class="flex items-center space-x-2">
+        <img src="/images/gyubin-logo.png" alt="Logo" class="w-8 h-8 rounded-full" />
+        <span class="text-xl font-bold text-pink-500">Really</span>
       </div>
       <div class="flex space-x-6 text-sm font-medium">
+        <a href="#timeline" class="hover:text-pink-500 whitespace-nowrap">年表</a>
         <a href="#news" class="hover:text-pink-500 whitespace-nowrap">新聞</a>
         <a href="#videos" class="hover:text-pink-500 whitespace-nowrap">影音</a>
         <a href="#gallery" class="hover:text-pink-500 whitespace-nowrap">照片</a>
-        <a href="#timeline" class="hover:text-pink-500 whitespace-nowrap">年表</a>
         <a href="#social" class="hover:text-pink-500 whitespace-nowrap">社群</a>
         <a href="#about" class="hover:text-pink-500 whitespace-nowrap">關於</a>
       </div>
@@ -41,68 +40,89 @@
   </nav>
 
   <!-- Hero Section -->
-  <section class="bg-gradient-to-r from-pink-200 to-purple-300 py-20 text-center">
-    <img src="/images/gyubin-logo.png" alt="Really Logo" class="mx-auto w-24 mb-4" />
-    <h1 class="text-5xl font-bold mb-4">Really</h1>
-    <p class="text-xl">Gyubin 粉絲專屬網站</p>
+  <section class="text-center py-20" style="background: linear-gradient(to right, #FFF1F7, #FEEFF3);">
+    <img src="/images/gyubin-logo.png" alt="Gyubin Fan Logo" class="w-24 mx-auto mb-4 drop-shadow-md">
+    <h1 class="text-5xl font-bold text-[#E16C94]">Really</h1>
+    <p class="text-lg text-[#C95E80] mt-2">Gyubin 粉絲專屬網站</p>
   </section>
 
-  <!-- About Section -->
-  <section id="about" class="py-12 px-6 md:px-20">
-    <h2 class="text-3xl font-bold mb-4">關於 Gyubin</h2>
-    <p class="text-lg leading-relaxed mb-2">本名朴珪斌（Park Gyu-bin），2006年出生，韓國新生代女歌手，於2024年以《Really Like You》出道，因其甜美嗓音與現場實力而被譽為「小IU」。</p>
-    <p class="text-lg leading-relaxed">她的音樂作品包括《Satellite》、《Special》，並於2025年推出首張迷你專輯《Flowering》。</p>
-  </section>
-
- <!-- News Section -->
-<section id="news" class="py-12 px-6 md:px-20 bg-white">
-  <h2 class="text-3xl font-bold mb-6 text-center">📰 最新新聞與活動</h2>
-  <ul id="news-list" class="space-y-4 text-lg list-disc list-inside"></ul>
-  <button id="load-more" class="mt-6 text-pink-600 hover:underline block mx-auto">載入更多新聞</button>
-
-  <script>
-    fetch("/data/news.json")
-      .then(res => res.json())
-      .then(news => {
-        const list = document.getElementById("news-list");
-        const btn = document.getElementById("load-more");
-        let current = 0;
-        const batchSize = 6;
-
-        function renderNext() {
-          const nextItems = news.slice(current, current + batchSize);
-          nextItems.forEach(item => {
+  <!-- Timeline -->
+  <section id="timeline" class="py-12 px-6 md:px-20 bg-white">
+    <h2 class="text-3xl font-bold mb-6 text-center">📅 年表</h2>
+    <ul id="timeline-list" class="space-y-4 text-lg list-disc list-inside"></ul>
+    <script>
+      fetch("/data/timeline.json")
+        .then(res => res.json())
+        .then(timeline => {
+          const list = document.getElementById("timeline-list");
+          timeline.forEach(item => {
             const li = document.createElement("li");
-            const a = document.createElement("a");
-            a.href = item.link;
-            a.textContent = item.title;
-            a.target = "_blank";
-            a.className = "text-blue-600 hover:underline";
-            li.appendChild(a);
+            li.textContent = `${item.date} - ${item.event}`;
             list.appendChild(li);
           });
-          current += batchSize;
-          if (current >= news.length) {
-            btn.style.display = "none";
+        });
+    </script>
+  </section>
+
+  <!-- News Section -->
+  <section id="news" class="py-12 px-6 md:px-20 bg-white">
+    <h2 class="text-3xl font-bold mb-6 text-center">📰 最新新聞與活動</h2>
+    <ul id="news-list" class="space-y-4 text-lg list-disc list-inside"></ul>
+    <button id="load-more" class="mt-6 text-pink-600 hover:underline block mx-auto">載入更多新聞</button>
+    <script>
+      fetch("/data/news.json")
+        .then(res => res.json())
+        .then(news => {
+          const list = document.getElementById("news-list");
+          const btn = document.getElementById("load-more");
+          let current = 0;
+          const batchSize = 6;
+          function renderNext() {
+            const nextItems = news.slice(current, current + batchSize);
+            nextItems.forEach(item => {
+              const li = document.createElement("li");
+              const a = document.createElement("a");
+              a.href = item.link;
+              a.textContent = item.title;
+              a.target = "_blank";
+              a.className = "text-blue-600 hover:underline";
+              li.appendChild(a);
+              list.appendChild(li);
+            });
+            current += batchSize;
+            if (current >= news.length) btn.style.display = "none";
           }
-        }
+          renderNext();
+          btn.addEventListener("click", renderNext);
+        });
+    </script>
+  </section>
 
-        renderNext(); // 初始載入 6 筆
-        btn.addEventListener("click", renderNext);
-      });
-  </script>
-</section>
+  <!-- Video Wall -->
+  <section id="videos" class="py-12 px-6 md:px-20 bg-white">
+    <h2 class="text-3xl font-bold mb-6 text-center">🎬 音樂影音牆</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div class="rounded-xl overflow-hidden shadow-lg">
+        <iframe class="w-full aspect-video" src="https://www.youtube.com/embed/FkefRSxpuFk" frameborder="0" allowfullscreen></iframe>
+        <div class="p-4"><h3 class="text-lg font-semibold">Really Like You - Official MV</h3></div>
+      </div>
+      <div class="rounded-xl overflow-hidden shadow-lg">
+        <iframe class="w-full aspect-video" src="https://www.youtube.com/embed/2xvLHV9EMYk" frameborder="0" allowfullscreen></iframe>
+        <div class="p-4"><h3 class="text-lg font-semibold">Satellite - Live Stage</h3></div>
+      </div>
+    </div>
+  </section>
 
-  <!-- Image Gallery Preview -->
+  <!-- Image Gallery -->
   <section id="gallery" class="py-12 px-6 md:px-20 bg-white">
-    <h2 class="text-3xl font-bold mb-6">精選照片</h2>
+    <h2 class="text-3xl font-bold mb-6">📷 精選照片</h2>
     <div id="ig-feed" class="columns-2 md:columns-4 gap-4 space-y-4"></div>
     <script>
       fetch("/data/ig.json")
         .then(res => res.json())
         .then(images => {
           const container = document.getElementById("ig-feed");
-          images.slice(0, 6).forEach(url => {
+          images.slice(0, 8).forEach(url => {
             const img = document.createElement("img");
             img.src = url;
             img.className = "rounded-xl shadow-md w-full break-inside-avoid";
@@ -114,71 +134,29 @@
 
   <!-- Social Links -->
   <section id="social" class="py-12 px-6 md:px-20 text-center">
-    <h2 class="text-3xl font-bold mb-6">社群連結</h2>
+    <h2 class="text-3xl font-bold mb-6">📡 社群連結</h2>
     <div class="flex justify-center gap-10 text-lg flex-wrap">
       <a href="https://www.instagram.com/baggyubin73" target="_blank" class="flex items-center gap-2 text-pink-600 hover:underline">
-        <img src="https://img.icons8.com/ios-filled/24/fa327a/instagram-new.png" alt="Instagram" class="w-5 h-5">Instagram
+        <img src="https://img.icons8.com/ios-filled/24/fa327a/instagram-new.png" class="w-5 h-5">Instagram
       </a>
       <a href="https://www.youtube.com/@Gyubin" target="_blank" class="flex items-center gap-2 text-red-600 hover:underline">
-        <img src="https://img.icons8.com/ios-filled/24/fa0000/youtube-play.png" alt="YouTube" class="w-5 h-5">YouTube
+        <img src="https://img.icons8.com/ios-filled/24/fa0000/youtube-play.png" class="w-5 h-5">YouTube
       </a>
       <a href="https://open.spotify.com/artist/7nScMbyBG94XsSpe7yrImS?si=q7tP2v70QECKJX5p3L49BA" target="_blank" class="flex items-center gap-2 text-green-600 hover:underline">
-        <img src="https://img.icons8.com/ios-filled/24/1DB954/spotify.png" alt="Spotify" class="w-5 h-5">Spotify
+        <img src="https://img.icons8.com/ios-filled/24/1DB954/spotify.png" class="w-5 h-5">Spotify
       </a>
       <a href="https://linktr.ee/live.gyubin" target="_blank" class="flex items-center gap-2 text-blue-500 hover:underline">
-        <img src="https://img.icons8.com/ios-filled/24/3b82f6/link--v1.png" alt="Linktree" class="w-5 h-5">Linktree
+        <img src="https://img.icons8.com/ios-filled/24/3b82f6/link--v1.png" class="w-5 h-5">Linktree
       </a>
     </div>
   </section>
 
-  <!-- Video Wall -->
-  <section id="videos" class="py-12 px-6 md:px-20 bg-white">
-    <h2 class="text-3xl font-bold mb-6 text-center">🎬 音樂影音牆</h2>
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-      <div class="rounded-xl overflow-hidden shadow-lg">
-        <iframe class="w-full aspect-video" src="https://www.youtube.com/embed/FkefRSxpuFk" frameborder="0" allowfullscreen></iframe>
-        <div class="p-4">
-          <h3 class="text-lg font-semibold">Really Like You - Official MV</h3>
-        </div>
-      </div>
-      <div class="rounded-xl overflow-hidden shadow-lg">
-        <iframe class="w-full aspect-video" src="https://www.youtube.com/embed/2xvLHV9EMYk" frameborder="0" allowfullscreen></iframe>
-        <div class="p-4">
-          <h3 class="text-lg font-semibold">Satellite - Live Stage</h3>
-        </div>
-      </div>
-    </div>
-  </section>
-  
-   <!-- Timeline -->
-  <section id="timeline" class="py-12 px-6 md:px-20 bg-white">
-    <h2 class="text-3xl font-bold mb-6 text-center">🗓️ Gyubin 年表紀錄</h2>
-    <ul id="timeline-list" class="space-y-4 text-lg list-disc list-inside"></ul>
-    <script>
-      fetch("/data/timeline.json")
-        .then(res => res.json())
-        .then(data => {
-          const list = document.getElementById("timeline-list");
-          data.sort((a, b) => new Date(b.date) - new Date(a.date));
-          data.forEach(item => {
-            const li = document.createElement("li");
-            li.innerHTML = `<strong>${item.date}</strong>：${item.event}`;
-            list.appendChild(li);
-          });
-        });
-    </script>
-  </section>
-  
   <!-- Footer -->
   <footer class="bg-gray-200 text-center py-6 mt-12 text-sm">
     <div class="mb-2">
       👁️ 今日瀏覽人數：<span id="busuanzi_value_site_today_uv"></span>，累計瀏覽次數：<span id="busuanzi_value_site_pv"></span>
     </div>
-    <div>
-    製作：Gyubin 粉絲 Ethan Lin｜非官方網站｜
-    版權屬原創者所有｜所有圖片皆屬原作者所有，僅用於非商業推廣使用，若有侵權請聯繫移除。
-    </div>
+    製作：Gyubin 粉絲 Ethan Lin｜非官方網站｜所有圖片版權屬原作者，僅作為非商業推廣用途
   </footer>
-
 </body>
 </html>
